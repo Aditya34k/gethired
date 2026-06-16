@@ -3,9 +3,9 @@ from pydantic import BaseModel, EmailStr, field_validator
 
 class Experience(BaseModel):
     """One job entry from a resume."""
-    company: str
-    title: str
-    start_year: int
+    company: str = "Unknown Company"
+    title: str = "Unknown Title"
+    start_year: int = 0
     end_year: int | None = None   # None means "current job"
     description: str = ""
 
