@@ -49,36 +49,37 @@ def extract_profile_with_llm(raw_text: str) -> dict:
     LLMs have context limits. Most resumes are under 6000 characters
     of actual content. Truncating avoids hitting token limits.
     """
-    system_prompt = """You are a resume parser. Extract structured data from the resume text provided.
-
-Return ONLY a valid JSON object with exactly this structure — no explanation, no markdown, no extra text:
+    system_prompt =system_prompt = """You are a resume parser. Extract structured data from the resume text.
+Return ONLY a valid JSON object with exactly this structure — no explanation, no markdown:
 {
   "full_name": "string",
   "email": "string or null",
-  "skills": ["list", "of", "skill", "strings"],
+  "skills": ["individual skill name", "another skill"],
   "experience": [
     {
-      "company": "string",
-      "title": "string",
-      "start_year": 2020,
-      "end_year": 2023,
-      "description": "brief description of role"
+      "company": "company name only, without the job title",
+      "title": "job title only",
+      "start_year": 2024,
+      "end_year": 2024,
+      "description": "brief summary of what they did"
     }
   ],
   "education": [
     {
-      "institution": "string",
-      "degree": "string",
-      "year": 2019
+      "institution": "college or university name",
+      "degree": "degree name",
+      "year": 2024
     }
   ]
 }
 
-Rules:
-- end_year should be null if this is a current job
-- start_year and end_year must be integers (just the year)
-- skills should be individual skills, not sentences
-- If any field is missing from the resume, use null for strings and [] for arrays
+IMPORTANT RULES:
+- company should be just the company name e.g. "Authnull" not "Authnull (Technical Trainee-AI/ML)"
+- title should be just the role e.g. "Technical Trainee - AI/ML"
+- start_year and end_year must be integers (the year number only e.g. 2024) — never null
+- if end_year is "present" or "current" use null
+- if you cannot find a year, use 0 as the integer, never use null for start_year
+- skills must be individual technology or skill names, not full sentences
 - Return ONLY the JSON object, nothing else"""
 
     response = completion(
