@@ -36,6 +36,7 @@ class InterviewState(BaseModel):
 
     # --- Interview progress ---
     questions_asked: list[str] = []     # all questions asked so far
+    question_criteria: list[str] = []
     answers_given: list[str] = []       # all answers given so far
     scores: list[int] = []             # score per answer (0-10)
     feedbacks: list[str] = []          # feedback per answer
