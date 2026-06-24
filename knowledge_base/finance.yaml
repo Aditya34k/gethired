@@ -1,0 +1,19 @@
+domain: finance
+questions:
+  - id: fin_001
+    difficulty: junior
+    topic: valuation
+    question: "Walk me through the three main valuation methods and when you would use each."
+    good_answer_criteria: "Mentions DCF, comparable companies, precedent transactions with correct use cases"
+
+  - id: fin_002
+    difficulty: junior
+    topic: accounting
+    question: "If a company's net income increases by 100, walk me through the impact on the three financial statements."
+    good_answer_criteria: "Correctly traces through income statement, balance sheet retained earnings, cash flow from operations"
+
+  - id: fin_003
+    difficulty: mid
+    topic: modeling
+    question: "How would you build a DCF model from scratch? What are the key assumptions?"
+    good_answer_criteria: "Mentions revenue projections, WACC, terminal value, sensitivity analysis"

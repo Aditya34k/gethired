@@ -1,0 +1,37 @@
+domain: data_science
+questions:
+  - id: ds_001
+    difficulty: junior
+    topic: ml_fundamentals
+    question: "Explain the difference between overfitting and underfitting. How would you detect and fix each?"
+    good_answer_criteria: "Mentions bias-variance tradeoff, validation curves, regularisation, more data"
+
+  - id: ds_002
+    difficulty: junior
+    topic: ml_fundamentals
+    question: "You trained a model with 99% accuracy but it performs poorly in production. What could be wrong?"
+    good_answer_criteria: "Mentions data leakage, class imbalance, train-test distribution shift, metric choice"
+
+  - id: ds_003
+    difficulty: junior
+    topic: rag_llms
+    question: "Can you explain how a RAG pipeline works and why it is useful for LLM applications?"
+    good_answer_criteria: "Mentions retrieval step, vector embeddings, context injection, grounding LLM responses"
+
+  - id: ds_004
+    difficulty: junior
+    topic: vector_databases
+    question: "What is a vector database and how is it different from a traditional database?"
+    good_answer_criteria: "Mentions embeddings, similarity search, ANN algorithms, use cases like semantic search"
+
+  - id: ds_005
+    difficulty: mid
+    topic: mlops
+    question: "How would you monitor a machine learning model in production? What metrics would you track?"
+    good_answer_criteria: "Mentions data drift, model drift, latency, prediction distribution, retraining triggers"
+
+  - id: ds_006
+    difficulty: mid
+    topic: llms
+    question: "What is the difference between fine-tuning an LLM and using RAG? When would you choose each?"
+    good_answer_criteria: "Fine-tuning for style/behaviour, RAG for knowledge, cost and data requirements tradeoffs"

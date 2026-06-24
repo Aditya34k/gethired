@@ -1,0 +1,31 @@
+domain: software_engineering
+questions:
+  - id: se_001
+    difficulty: junior
+    topic: data_structures
+    question: "Can you explain the difference between a stack and a queue, and give a real example of where you would use each?"
+    good_answer_criteria: "Mentions LIFO vs FIFO, gives concrete examples like call stack or print queue"
+
+  - id: se_002
+    difficulty: junior
+    topic: algorithms
+    question: "Walk me through how you would find duplicates in an array. What is the time complexity of your approach?"
+    good_answer_criteria: "Mentions hashing or sorting approach, explains O(n) vs O(n log n) tradeoff"
+
+  - id: se_003
+    difficulty: mid
+    topic: system_design
+    question: "How would you design a URL shortener like bit.ly? Walk me through the key components."
+    good_answer_criteria: "Mentions hash function, database choice, redirect mechanism, scale considerations"
+
+  - id: se_004
+    difficulty: mid
+    topic: databases
+    question: "When would you choose a NoSQL database over a relational one? Give a concrete example."
+    good_answer_criteria: "Mentions schema flexibility, horizontal scaling, specific use cases like document storage"
+
+  - id: se_005
+    difficulty: senior
+    topic: system_design
+    question: "You are designing a system that needs to process 1 million events per second. Walk me through your architecture."
+    good_answer_criteria: "Mentions message queues, partitioning, horizontal scaling, back pressure handling"
