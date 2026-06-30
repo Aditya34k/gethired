@@ -26,6 +26,7 @@ VALID_INTENTS = ["new_job", "career_switch", "promotion", "lateral_move"]
 
 
 def fetch_profile_from_qdrant(candidate_id: str) -> dict:
+    print("DEBUG fetching profile for:", candidate_id)
     """
     Pulls all stored chunks for a candidate from Qdrant.
     Returns a dict with their skills, experience, and name.

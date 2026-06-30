@@ -2,7 +2,7 @@ import structlog
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from services.api.routers import ingest
+from services.api.routers import ingest, interview
 
 log = structlog.get_logger()
 
@@ -21,6 +21,7 @@ app.add_middleware(
 )
 
 app.include_router(ingest.router, prefix="/api/v1")
+app.include_router(interview.router, prefix="/api/v1")
 
 
 @app.get("/health")

@@ -14,6 +14,8 @@ log = structlog.get_logger()
 
 
 def start_node(state: InterviewState) -> dict:
+    print("DEBUG start_node candidate_id:", state.candidate_id)
+    print("DEBUG start_node type:", type(state))
     """
     First node — runs once when interview begins.
     1. Classify the candidate (domain, YOE, intent)
@@ -39,6 +41,9 @@ def start_node(state: InterviewState) -> dict:
     # Extract just the question strings and their criteria
     question_texts = [q["question"] for q in questions]
     question_criteria = [q["good_answer_criteria"] for q in questions]
+    # Debug — add this right after question_criteria = [q["good_answer_criteria"] for q in questions]
+    print("DEBUG criteria stored:", question_criteria)
+    print("DEBUG questions stored:", question_texts)
 
     # If RAG didn't return enough, pad with a generic fallback
     while len(question_texts) < state.total_questions:
@@ -113,16 +118,25 @@ def evaluate_node(state: InterviewState) -> dict:
     if not state.answers_given:
         return {"next_action": "ask_question"}
 
-    # Latest answer is the last one given
     latest_answer = state.answers_given[-1]
     current_q = state.current_question
 
-    # Get criteria for this question
-    criteria_list = getattr(state, "question_criteria", [])
+    # question_number was already incremented by ask_question_node
+    # so index is question_number - 1
     q_index = state.question_number - 1
-    criteria = criteria_list[q_index] if q_index < len(criteria_list) else ""
+    criteria_list = state.question_criteria
+    criteria = criteria_list[q_index] if criteria_list and q_index < len(criteria_list) else ""
 
-    # Score the answer
+    log.info(
+        "graph.evaluate_debug",
+        q_index=q_index,
+        criteria_found=bool(criteria),
+        criteria_preview=criteria[:60] if criteria else "EMPTY",
+    )
+    print("DEBUG state.question_criteria:", state.question_criteria)
+    print("DEBUG q_index:", q_index)
+    print("DEBUG criteria:", criteria)
+
     result = evaluate_answer(
         question=current_q,
         answer=latest_answer,
@@ -135,11 +149,9 @@ def evaluate_node(state: InterviewState) -> dict:
     feedback = result["feedback"]
     needs_followup = result["needs_followup"]
 
-    # Update scores and feedbacks
     new_scores = state.scores + [score]
     new_feedbacks = state.feedbacks + [feedback]
 
-    # Add feedback to conversation history
     new_messages = state.messages + [
         {"role": "assistant", "content": f"Feedback: {feedback}"}
     ]
@@ -151,7 +163,6 @@ def evaluate_node(state: InterviewState) -> dict:
         needs_followup=needs_followup,
     )
 
-    # Decide what to do next
     if state.question_number >= state.total_questions:
         next_action = "end"
     elif needs_followup:
