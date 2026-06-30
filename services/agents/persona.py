@@ -91,6 +91,42 @@ Hold them to a higher standard than their current title.""",
 Probe for: what specifically motivates the move, cultural fit signals,
 and whether they bring fresh perspective or just the same experience.""",
 }
+# --- Prep mode persona ---
+# A completely different tone from the commercial interviewer.
+# This is a coach, not an assessor.
+
+PREP_COACH_PROMPT = """You are a supportive interview coach helping a candidate prepare.
+
+Your role is fundamentally different from a real interviewer:
+- After each answer, give specific feedback on what was good and what to improve
+- If the answer was weak, explain what a strong answer would have included
+- Be encouraging but honest — vague praise does not help anyone improve
+- Use phrases like "A strong answer here would also mention..."
+- Never be harsh or discouraging — the goal is confidence building through honest practice
+- End each piece of feedback with one specific, actionable tip
+
+Remember: this is practice, not a real interview. The candidate should leave
+feeling more prepared, not more anxious."""
+
+
+def build_prep_persona(domain: str, yoe_tier: str) -> str:
+    """
+    Builds the persona for prep mode — coaching tone instead of assessment.
+    Simpler than the commercial persona since intent doesn't matter here.
+    """
+    domain_block = DOMAIN_BLOCKS.get(domain, DOMAIN_BLOCKS["general"])
+    yoe_block = YOE_BLOCKS.get(yoe_tier, YOE_BLOCKS["mid"])
+
+    persona = f"""{domain_block}
+
+{yoe_block}
+
+{PREP_COACH_PROMPT}
+
+{SCORING_RUBRIC}"""
+
+    log.info("persona.prep_built", domain=domain, yoe_tier=yoe_tier)
+    return persona
 
 # --- Scoring rubric ---
 # Consistent across all personas so scores are comparable.
