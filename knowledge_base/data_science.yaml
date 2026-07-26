@@ -35,3 +35,21 @@ questions:
     topic: llms
     question: "What is the difference between fine-tuning an LLM and using RAG? When would you choose each?"
     good_answer_criteria: "Fine-tuning for style/behaviour, RAG for knowledge, cost and data requirements tradeoffs"
+
+  - id: ds_007
+    difficulty: junior
+    topic: python
+    question: "Walk me through how you would clean a messy dataset in pandas. What are the common issues you look for?"
+    good_answer_criteria: "Mentions missing values, duplicates, data types, outliers, and specific pandas methods"
+
+  - id: ds_008
+    difficulty: junior
+    topic: ml_fundamentals
+    question: "What is the difference between supervised and unsupervised learning? Give a real example of each."
+    good_answer_criteria: "Clear definition of both, concrete real-world examples, mentions labels vs no labels"
+
+  - id: ds_009
+    difficulty: junior
+    topic: evaluation
+    question: "How would you evaluate a classification model? What metrics would you use and why?"
+    good_answer_criteria: "Mentions accuracy, precision, recall, F1, ROC-AUC, and when each is appropriate"

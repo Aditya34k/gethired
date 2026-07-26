@@ -42,8 +42,8 @@ def start_node(state: InterviewState) -> dict:
     question_texts = [q["question"] for q in questions]
     question_criteria = [q["good_answer_criteria"] for q in questions]
     # Debug — add this right after question_criteria = [q["good_answer_criteria"] for q in questions]
-    print("DEBUG criteria stored:", question_criteria)
-    print("DEBUG questions stored:", question_texts)
+    # print("DEBUG criteria stored:", question_criteria)
+    # print("DEBUG questions stored:", question_texts)
 
     # If RAG didn't return enough, pad with a generic fallback
     while len(question_texts) < state.total_questions:
@@ -133,9 +133,9 @@ def evaluate_node(state: InterviewState) -> dict:
         criteria_found=bool(criteria),
         criteria_preview=criteria[:60] if criteria else "EMPTY",
     )
-    print("DEBUG state.question_criteria:", state.question_criteria)
-    print("DEBUG q_index:", q_index)
-    print("DEBUG criteria:", criteria)
+    # print("DEBUG state.question_criteria:", state.question_criteria)
+    # print("DEBUG q_index:", q_index)
+    # print("DEBUG criteria:", criteria)
 
     result = evaluate_answer(
         question=current_q,

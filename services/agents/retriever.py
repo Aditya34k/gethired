@@ -131,12 +131,21 @@ def retrieve_questions(
         with_payload=True,
     )
 
-    # If not enough domain-specific results, fall back without domain filter
+    # If not enough domain-specific results, relax difficulty filter only
+    # Never fall back to a different domain
     if len(results) < n:
         log.info("retriever.fallback_search", domain=domain, found=len(results))
         results = client.search(
             collection_name="knowledge_base",
             query_vector=query_vector,
+            query_filter=Filter(
+                must=[
+                    FieldCondition(
+                        key="domain",
+                        match=MatchValue(value=domain)
+                    ),
+                ]
+            ),
             limit=n,
             with_payload=True,
         )
