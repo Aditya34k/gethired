@@ -183,28 +183,19 @@ def prep_end_node(state: InterviewState) -> dict:
 
 
 def build_prep_graph():
-    """Assembles the prep mode graph — simpler than commercial, no followup branch."""
+    """
+    Minimal graph — only start and ask_question.
+    evaluate and end are called manually in the router,
+    exactly like interview.py does it.
+    """
     graph = StateGraph(InterviewState)
 
     graph.add_node("start", prep_start_node)
     graph.add_node("ask_question", prep_ask_question_node)
-    graph.add_node("evaluate", prep_evaluate_node)
-    graph.add_node("end", prep_end_node)
 
     graph.set_entry_point("start")
     graph.add_edge("start", "ask_question")
-
-    def route(state: InterviewState) -> str:
-        return "end" if state.next_action == "end" else "ask_question"
-
-    graph.add_conditional_edges(
-        "evaluate",
-        route,
-        {"ask_question": "ask_question", "end": "end"}
-    )
-
-    graph.add_edge("ask_question", "evaluate")  # makes evaluate reachable
-    graph.add_edge("end", END)
+    graph.add_edge("ask_question", END)
 
     return graph.compile()
 # Single compiled graph instance — import this in prep.py
