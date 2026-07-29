@@ -2,6 +2,8 @@ import requests
 import time
 
 BASE = "http://localhost:8000/api/v1"
+HEADERS = {"X-API-Key": "gethired-secret-2026"}
+
 
 JOB_DESCRIPTION = """
 We are looking for a Machine Learning Engineer to join our team.
@@ -27,7 +29,7 @@ start_resp = requests.post(f"{BASE}/prep/start", json={
     "candidate_id": "7e1df2af-83e1-46e5-962f-e023c58f4d66",
     "job_description": JOB_DESCRIPTION,
     "total_questions": 3,
-})
+} , headers=HEADERS)
 
 if start_resp.status_code != 200:
     print("ERROR starting prep:", start_resp.text)
@@ -61,7 +63,7 @@ for i, answer in enumerate(sample_answers):
     msg_resp = requests.post(f"{BASE}/prep/message", json={
         "session_id": session_id,
         "message": answer,
-    })
+    } , headers=HEADERS)
 
     if msg_resp.status_code != 200:
         print("ERROR:", msg_resp.text)

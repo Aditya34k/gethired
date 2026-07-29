@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     # No default — if this is missing, Settings() raises an error.
     # That's intentional: better to fail at startup than mid-request.
     groq_api_key: str
+    api_key: str = "dev-key-change-in-production"
 
     # --- Supabase (not used yet, but declared for later phases) ---
     supabase_url: str = ""

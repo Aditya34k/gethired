@@ -1,6 +1,8 @@
 import requests
 
 BASE = "http://localhost:8000/api/v1"
+HEADERS = {"X-API-Key": "gethired-secret-2026"}
+
 
 print("=" * 55)
 print("GETHIRED AI — INTERVIEW SESSION")
@@ -15,7 +17,7 @@ start_resp = requests.post(f"{BASE}/interview/start", json={
     "candidate_id": candidate_id,
     "mode": "commercial",
     "total_questions": n_questions,
-})
+}, headers=HEADERS)
 
 if start_resp.status_code != 200:
     print("ERROR:", start_resp.text)
@@ -43,7 +45,7 @@ while True:
     msg_resp = requests.post(f"{BASE}/interview/message", json={
         "session_id": session_id,
         "message": answer,
-    })
+    } , headers=HEADERS)
 
     if msg_resp.status_code != 200:
         print("ERROR:", msg_resp.text)
