@@ -1,11 +1,12 @@
 import json
+
 import structlog
 from litellm import completion
 from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, FieldCondition, MatchValue
+from qdrant_client.models import FieldCondition, Filter, MatchValue
 
-from services.api.config import settings
 from services.agents.state import InterviewState
+from services.api.config import settings
 
 log = structlog.get_logger()
 

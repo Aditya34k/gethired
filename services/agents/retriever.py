@@ -1,9 +1,10 @@
 import os
+
 import structlog
 import yaml
-from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, FieldCondition, MatchValue
+from qdrant_client.models import FieldCondition, Filter, MatchValue
+from sentence_transformers import SentenceTransformer
 
 from services.api.config import settings
 
@@ -49,8 +50,9 @@ def seed_knowledge_base(domain: str) -> int:
 
     client = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
 
-    from qdrant_client.models import PointStruct
     import uuid
+
+    from qdrant_client.models import PointStruct
 
     points = []
     for q in questions:

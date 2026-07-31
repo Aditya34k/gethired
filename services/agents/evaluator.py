@@ -1,6 +1,8 @@
 import json
+
 import structlog
 from litellm import completion
+
 from services.api.config import settings
 
 log = structlog.get_logger()

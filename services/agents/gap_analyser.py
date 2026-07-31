@@ -1,9 +1,10 @@
 import json
+
 import structlog
 from litellm import completion
-from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, FieldCondition, MatchValue
+from qdrant_client.models import FieldCondition, Filter, MatchValue
+from sentence_transformers import SentenceTransformer
 
 from services.api.config import settings
 

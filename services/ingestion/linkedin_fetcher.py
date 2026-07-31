@@ -1,6 +1,6 @@
-import asyncio
-import sys
 import os
+import sys
+
 import structlog
 
 # Explicit path fix for Windows — ensures mcp_servers is importable

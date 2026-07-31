@@ -1,0 +1,253 @@
+E501 Line too long (101 > 88)
+   --> services\agents\evaluator.py:133:89
+    |
+132 |     system_prompt = """You are writing a professional interview assessment report.
+133 | Based on the interview transcript, identify 2-3 specific strengths and 2-3 specific areas to improve.
+    |                                                                                         ^^^^^^^^^^^^^
+134 | Be specific — reference actual answers, not generic statements.
+    |
+
+E501 Line too long (100 > 88)
+   --> services\agents\evaluator.py:147:89
+    |
+145 |         messages=[
+146 |             {"role": "system", "content": system_prompt},
+147 |             {"role": "user", "content": f"Interview transcript for {candidate_name}:\n{qa_summary}"}
+    |                                                                                         ^^^^^^^^^^^^
+148 |         ],
+149 |     )
+    |
+
+E501 Line too long (91 > 88)
+   --> services\agents\gap_analyser.py:100:89
+    |
+ 98 |     - overall_match_pct: rough percentage match
+ 99 |     """
+100 |     system_prompt = """You are a technical recruiter analysing a candidate's fit for a job.
+    |                                                                                         ^^^
+101 | Compare the candidate's skills against the job description.
+    |
+
+E501 Line too long (101 > 88)
+  --> services\agents\graph.py:43:89
+   |
+41 |     question_texts = [q["question"] for q in questions]
+42 |     question_criteria = [q["good_answer_criteria"] for q in questions]
+43 |     # Debug — add this right after question_criteria = [q["good_answer_criteria"] for q in questions]
+   |                                                                                         ^^^^^^^^^^^^^
+44 |     # print("DEBUG criteria stored:", question_criteria)
+45 |     # print("DEBUG questions stored:", question_texts)
+   |
+
+E501 Line too long (95 > 88)
+   --> services\agents\graph.py:127:89
+    |
+125 |     q_index = state.question_number - 1
+126 |     criteria_list = state.question_criteria
+127 |     criteria = criteria_list[q_index] if criteria_list and q_index < len(criteria_list) else ""
+    |                                                                                         ^^^^^^^
+128 |
+129 |     log.info(
+    |
+
+E501 Line too long (96 > 88)
+  --> services\agents\persona.py:16:89
+   |
+14 | Focus areas: data structures, algorithms, system design, code quality, scalability.
+15 | Expect candidates to explain their reasoning, not just give answers.
+16 | Ask about real systems they have built, tradeoffs they made, and failures they learned from.""",
+   |                                                                                         ^^^^^^^^
+17 |
+18 |     "data_science": """You are a Senior Data Science and ML interviewer.
+   |
+
+E501 Line too long (91 > 88)
+  --> services\agents\persona.py:30:89
+   |
+29 |     "marketing": """You are a Senior Marketing interviewer.
+30 | Focus areas: growth strategy, campaign analytics, customer segmentation, brand positioning.
+   |                                                                                         ^^^
+31 | Expect data-driven thinking and clear articulation of business impact.
+32 | Ask about campaigns they ran, metrics they tracked, and results they achieved.""",
+   |
+
+E501 Line too long (91 > 88)
+  --> services\agents\persona.py:36:89
+   |
+34 |     "product_management": """You are a Senior Product Management interviewer.
+35 | Focus areas: product strategy, prioritisation frameworks, user research, metrics.
+36 | Expect structured thinking using frameworks like RICE, jobs-to-be-done, north star metrics.
+   |                                                                                         ^^^
+37 | Ask about products they owned, tradeoffs they navigated, and how they handled stakeholders.""",
+   |
+
+E501 Line too long (95 > 88)
+  --> services\agents\persona.py:37:89
+   |
+35 | Focus areas: product strategy, prioritisation frameworks, user research, metrics.
+36 | Expect structured thinking using frameworks like RICE, jobs-to-be-done, north star metrics.
+37 | Ask about products they owned, tradeoffs they navigated, and how they handled stakeholders.""",
+   |                                                                                         ^^^^^^^
+38 |
+39 |     "general": """You are an experienced professional interviewer.
+   |
+
+E501 Line too long (90 > 88)
+   --> services\agents\persona.py:106:89
+    |
+104 | - Be encouraging but honest — vague praise does not help anyone improve
+105 | - Use phrases like "A strong answer here would also mention..."
+106 | - Never be harsh or discouraging — the goal is confidence building through honest practice
+    |                                                                                         ^^
+107 | - End each piece of feedback with one specific, actionable tip
+    |
+
+E501 Line too long (96 > 88)
+   --> services\agents\persona.py:151:89
+    |
+149 | INTERVIEW FORMAT:
+150 | - Ask ONE question at a time. Never ask multiple questions in one message.
+151 | - After receiving an answer, provide brief feedback (1-2 sentences), then ask the next question.
+    |                                                                                         ^^^^^^^^
+152 | - Keep your questions concise and clear.
+153 | - Do not reveal the score after each answer — only give qualitative feedback.
+    |
+
+E501 Line too long (89 > 88)
+   --> services\agents\persona.py:154:89
+    |
+152 | - Keep your questions concise and clear.
+153 | - Do not reveal the score after each answer — only give qualitative feedback.
+154 | - When the interview is complete, you will be asked to generate a full report separately.
+    |                                                                                         ^
+155 | - Stay in character as the interviewer at all times.
+156 | - Do not break the fourth wall or mention that you are an AI.
+    |
+
+E501 Line too long (93 > 88)
+  --> services\agents\prep_graph.py:46:89
+   |
+44 |         question_criteria.append("Specific example, clear approach, lessons learned")
+45 |
+46 |     log.info("prep_graph.start_complete", domain=state.domain, questions=len(question_texts))
+   |                                                                                         ^^^^^
+47 |
+48 |     return {
+   |
+
+E501 Line too long (95 > 88)
+   --> services\agents\prep_graph.py:98:89
+    |
+ 96 |     q_index = state.question_number - 1
+ 97 |     criteria_list = state.question_criteria
+ 98 |     criteria = criteria_list[q_index] if criteria_list and q_index < len(criteria_list) else ""
+    |                                                                                         ^^^^^^^
+ 99 |
+100 |     # Get the base score from the evaluator
+    |
+
+E501 Line too long (89 > 88)
+  --> services\agents\retriever.py:30:89
+   |
+28 |     # Fall back to general if domain file doesn't exist
+29 |     if not os.path.exists(yaml_path):
+30 |         yaml_path = os.path.join(base_dir, "knowledge_base", "software_engineering.yaml")
+   |                                                                                         ^
+31 |         log.warning("retriever.domain_file_missing", domain=domain, fallback="software_engineering")
+   |
+
+E501 Line too long (100 > 88)
+  --> services\agents\retriever.py:31:89
+   |
+29 |     if not os.path.exists(yaml_path):
+30 |         yaml_path = os.path.join(base_dir, "knowledge_base", "software_engineering.yaml")
+31 |         log.warning("retriever.domain_file_missing", domain=domain, fallback="software_engineering")
+   |                                                                                         ^^^^^^^^^^^^
+32 |
+33 |     with open(yaml_path, "r") as f:
+   |
+
+E501 Line too long (111 > 88)
+   --> services\agents\retriever.py:105:89
+    |
+103 |     # Build a query that represents what we want to find
+104 |     # The more specific, the better the retrieval
+105 |     query = f"{domain} interview questions for {yoe_tier} candidate skills: {', '.join(candidate_skills[:10])}"
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^
+106 |     query_vector = EMBEDDING_MODEL.encode(query).tolist()
+    |
+
+E501 Line too long (108 > 88)
+  --> services\agents\roadmap.py:50:89
+   |
+48 | - Each week should build on the previous one
+49 | - practice_task must be a specific, completable project or exercise
+50 | - Be specific with resource types (e.g. "official PyTorch docs tutorial on X" not just "read documentation")
+   |                                                                                         ^^^^^^^^^^^^^^^^^^^^
+51 | - Return ONLY the JSON, nothing else"""
+   |
+
+E501 Line too long (91 > 88)
+  --> services\agents\state.py:48:89
+   |
+46 |     # This is the list of messages sent to the LLM each turn.
+47 |     # It grows with every question and answer.
+48 |     # Format: [{"role": "user", "content": "..."}, {"role": "assistant", "content": "..."}]
+   |                                                                                         ^^^
+49 |     messages: list[dict] = []
+   |
+
+E501 Line too long (94 > 88)
+   --> services\api\routers\prep.py:122:89
+    |
+120 |         raise HTTPException(status_code=400, detail="Session already complete")
+121 |
+122 |     log.info("prep.message", session_id=req.session_id, question_number=state.question_number)
+    |                                                                                         ^^^^^^
+123 |
+124 |     updated_state = state.model_copy(update={
+    |
+
+E501 Line too long (96 > 88)
+ --> services\ingestion\linkedin_fetcher.py:7:89
+  |
+6 | # Explicit path fix for Windows — ensures mcp_servers is importable
+7 | sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+  |                                                                                         ^^^^^^^^
+8 |
+9 | from mcp_servers.linkedin.scraper import fetch_linkedin_profile
+  |
+
+E501 Line too long (108 > 88)
+  --> services\ingestion\resume_parser.py:52:89
+   |
+50 |     of actual content. Truncating avoids hitting token limits.
+51 |     """
+52 |     system_prompt =system_prompt = """You are a resume parser. Extract structured data from the resume text.
+   |                                                                                         ^^^^^^^^^^^^^^^^^^^^
+53 | Return ONLY a valid JSON object with exactly this structure — no explanation, no markdown:
+54 | {
+   |
+
+E501 Line too long (90 > 88)
+  --> services\ingestion\resume_parser.py:53:89
+   |
+51 |     """
+52 |     system_prompt =system_prompt = """You are a resume parser. Extract structured data from the resume text.
+53 | Return ONLY a valid JSON object with exactly this structure — no explanation, no markdown:
+   |                                                                                         ^^
+54 | {
+55 |   "full_name": "string",
+   |
+
+E501 Line too long (98 > 88)
+  --> services\ingestion\resume_parser.py:77:89
+   |
+76 | IMPORTANT RULES:
+77 | - company should be just the company name e.g. "Authnull" not "Authnull (Technical Trainee-AI/ML)"
+   |                                                                                         ^^^^^^^^^^
+78 | - title should be just the role e.g. "Technical Trainee - AI/ML"
+79 | - start_year and end_year must be integers (the year number only e.g. 2024) — never null
+   |
+
+Found 24 errors.

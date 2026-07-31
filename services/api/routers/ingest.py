@@ -1,13 +1,12 @@
 import uuid
-import asyncio
-import structlog
 
-from fastapi import APIRouter, UploadFile, File, BackgroundTasks, HTTPException, Query
+import structlog
+from fastapi import APIRouter, BackgroundTasks, File, HTTPException, Query, UploadFile
 
 from services.api.schemas.profile import IngestResponse
-from services.ingestion.resume_parser import parse_resume
 from services.ingestion.embedder import store_profile_embeddings
 from services.ingestion.linkedin_fetcher import fetch_and_merge_linkedin
+from services.ingestion.resume_parser import parse_resume
 
 log = structlog.get_logger()
 router = APIRouter()

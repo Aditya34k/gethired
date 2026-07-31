@@ -1,12 +1,13 @@
 import uuid
+
 import structlog
-from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
     Distance,
-    VectorParams,
     PointStruct,
+    VectorParams,
 )
+from sentence_transformers import SentenceTransformer
 
 from services.api.config import settings
 from services.api.schemas.profile import CandidateProfile

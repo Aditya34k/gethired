@@ -1,6 +1,6 @@
-import json
 import structlog
-from supabase import create_client, Client
+from supabase import Client, create_client
+
 from services.api.config import settings
 
 log = structlog.get_logger()

@@ -2,9 +2,9 @@ import structlog
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from services.api.routers import ingest, interview, prep
-from services.api.middleware import APIKeyMiddleware
 from services.api.config import settings
+from services.api.middleware import APIKeyMiddleware
+from services.api.routers import ingest, interview, prep
 
 log = structlog.get_logger()
 

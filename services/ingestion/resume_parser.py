@@ -2,11 +2,11 @@ import json
 
 import fitz  # PyMuPDF — imported as fitz for historical reasons
 import structlog
-from tenacity import retry, stop_after_attempt, wait_exponential
 from litellm import completion
+from tenacity import retry, stop_after_attempt, wait_exponential
 
 from services.api.config import settings
-from services.api.schemas.profile import CandidateProfile, Experience, Education
+from services.api.schemas.profile import CandidateProfile, Education, Experience
 
 log = structlog.get_logger()
 
