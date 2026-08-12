@@ -1,0 +1,22 @@
+app = "gethired-api"
+primary_region = "sin"       # Singapore — closest free region to India
+
+[build]
+  dockerfile = "docker/Dockerfile.api"
+
+[env]
+  PYTHONUNBUFFERED = "1"
+  QDRANT_HOST = "gethired-qdrant.fly.internal"  # Qdrant will run as separate Fly app
+  QDRANT_PORT = "6333"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = false    # never sleep
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1

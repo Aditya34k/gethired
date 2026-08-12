@@ -26,8 +26,22 @@ COLLECTION_RESUMES = "resume_chunks"
 COLLECTION_KNOWLEDGE = "knowledge_base"
 
 
+# def get_qdrant_client() -> QdrantClient:
+#     return QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+
 def get_qdrant_client() -> QdrantClient:
-    return QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+    if settings.qdrant_api_key:
+        # Cloud — use HTTPS with API key
+        return QdrantClient(
+            url=f"https://{settings.qdrant_host}",
+            api_key=settings.qdrant_api_key,
+        )
+    else:
+        # Local Docker — plain HTTP, no auth
+        return QdrantClient(
+            host=settings.qdrant_host,
+            port=settings.qdrant_port,
+        )
 
 
 def ensure_collections(client: QdrantClient) -> None:

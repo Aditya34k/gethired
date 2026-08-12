@@ -35,10 +35,24 @@ def fetch_profile_from_qdrant(candidate_id: str) -> dict:
     We filter by candidate_id in the payload — this is why we stored
     candidate_id as a payload field in the embedder.
     """
-    client = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+    # client = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+    def get_qdrant_client() -> QdrantClient:
+        if settings.qdrant_api_key:
+            # Cloud — use HTTPS with API key
+            return QdrantClient(
+                url=f"https://{settings.qdrant_host}",
+                api_key=settings.qdrant_api_key,
+            )
+        else:
+            # Local Docker — plain HTTP, no auth
+            return QdrantClient(
+                host=settings.qdrant_host,
+                port=settings.qdrant_port,
+            )
 
     # Scroll retrieves all points matching a filter.
     # Unlike search (which finds similar vectors), scroll finds exact matches.
+    client = get_qdrant_client()
     results, _ = client.scroll(
         collection_name="resume_chunks",
         scroll_filter=Filter(

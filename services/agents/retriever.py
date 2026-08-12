@@ -48,10 +48,23 @@ def seed_knowledge_base(domain: str) -> int:
         log.warning("retriever.no_questions_found", domain=domain)
         return 0
 
-    client = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+    # client = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+    def get_qdrant_client() -> QdrantClient:
+        if settings.qdrant_api_key:
+            # Cloud — use HTTPS with API key
+            return QdrantClient(
+                url=f"https://{settings.qdrant_host}",
+                api_key=settings.qdrant_api_key,
+            )
+        else:
+            # Local Docker — plain HTTP, no auth
+            return QdrantClient(
+                host=settings.qdrant_host,
+                port=settings.qdrant_port,
+            )
 
+    client = get_qdrant_client()
     import uuid
-
     from qdrant_client.models import PointStruct
 
     points = []

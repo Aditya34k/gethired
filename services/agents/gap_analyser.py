@@ -19,7 +19,23 @@ def get_candidate_skills(candidate_id: str) -> list[str]:
     Same pattern as classifier.py — filter by candidate_id,
     find the skills chunk, return the skills list.
     """
-    client = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+    # client = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
+    def get_qdrant_client() -> QdrantClient:
+        if settings.qdrant_api_key:
+            # Cloud — use HTTPS with API key
+            return QdrantClient(
+                url=f"https://{settings.qdrant_host}",
+                api_key=settings.qdrant_api_key,
+            )
+        else:
+            # Local Docker — plain HTTP, no auth
+            return QdrantClient(
+                host=settings.qdrant_host,
+                port=settings.qdrant_port,
+            )
+
+    # create the client instance
+    client = get_qdrant_client()
 
     results, _ = client.scroll(
         collection_name="resume_chunks",

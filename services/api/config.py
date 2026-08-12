@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     # --- Qdrant (vector DB) ---
     qdrant_host: str = "localhost"
     qdrant_port: int = 6333
+    qdrant_api_key: str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIiwic3ViamVjdCI6ImFwaS1rZXk6Y2Q3MWUyMTQtZmZmYy00ZWNmLWIwYzktYzYwZTY3OGRlZGZmIn0.EPND10-QhqPOVsEJlW_CRnSTk1kdteortBqBM7TP2O8"
 
     # --- LLM routing via LiteLLM ---
     # These are model strings LiteLLM understands.
